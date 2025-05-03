@@ -1,0 +1,245 @@
+/* --- Reset básico y configuración global --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; /* Fuente base */
+    background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%); /* Fondo degradado rosa suave */
+    color: #5c3d46; /* Color de texto principal oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Oculta el desbordamiento para evitar barras de scroll innecesarias */
+    position: relative; /* Necesario para elementos posicionados absolutamente dentro */
+}
+
+/* --- Contenedor Principal --- */
+.contenedor-principal {
+    background-color: rgba(255, 255, 255, 0.9); /* Blanco semi-transparente */
+    padding: 50px 40px;
+    border-radius: 25px; /* Bordes más redondeados */
+    box-shadow: 0 15px 35px rgba(238, 156, 167, 0.3), /* Sombra principal más suave */
+                0 5px 15px rgba(0, 0, 0, 0.07); /* Sombra secundaria ligera */
+    text-align: center;
+    position: relative; /* Para posicionar hijos absolutos */
+    z-index: 10; /* Asegura que esté sobre el fondo brillante */
+    width: 90%;
+    max-width: 550px; /* Ancho máximo */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Para animación de entrada */
+    opacity: 0; /* Inicialmente oculto para animación */
+    transform: scale(0.95); /* Inicialmente pequeño para animación */
+}
+
+/* Animación de entrada */
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.animacion-entrada {
+    /* Aplica la animación con un pequeño retraso */
+    animation: fadeInScaleUp 0.8s ease-out 0.3s forwards;
+}
+
+
+/* --- Estilo de la Pregunta --- */
+.pregunta {
+    font-family: 'Dancing Script', cursive; /* Fuente elegante */
+    font-size: 3.5em; /* Tamaño grande */
+    color: #e11d74; /* Rosa intenso */
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Sombra de texto sutil */
+}
+
+/* --- Contenedor de Botones --- */
+.contenedor-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alinea verticalmente si tienen alturas diferentes */
+    gap: 25px; /* Espacio entre botones */
+    flex-wrap: wrap; /* Permite que se apilen si no caben */
+    margin-top: 20px;
+}
+
+/* --- Estilo Base de Botones --- */
+.boton {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; /* Semi-negrita */
+    font-size: 1.1em;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* Forma de píldora */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transiciones suaves para todo */
+    letter-spacing: 0.5px;
+    min-width: 180px;
+    display: inline-flex; /* Para alinear íconos si los hubiera */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- Botón "Sí" (Romántico y Destacado) --- */
+.boton-si {
+    background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%); /* Degradado rosa-lavanda */
+    color: #fff;
+    box-shadow: 0 6px 15px rgba(255, 154, 158, 0.4); /* Sombra relacionada con el color */
+    position: relative; /* Para el pseudo-elemento de brillo */
+    overflow: hidden; /* Contiene el brillo */
+    animation: pulse 2s infinite ease-in-out; /* Animación de pulso sutil */
+}
+
+.boton-si:hover {
+    transform: translateY(-3px) scale(1.05); /* Levitar y agrandar */
+    box-shadow: 0 10px 20px rgba(255, 154, 158, 0.6);
+    filter: brightness(1.1); /* Hacerlo un poco más brillante */
+}
+
+.boton-si:active {
+    transform: translateY(-1px) scale(1.02); /* Efecto al presionar */
+    box-shadow: 0 4px 10px rgba(255, 154, 158, 0.5);
+}
+
+/* Animación de pulso para el botón Sí */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* Íconos de corazón dentro del botón Sí */
+.icono-corazon {
+    font-size: 1.2em;
+    margin: 0 8px;
+    display: inline-block; /* Asegura que se comporte bien */
+    transform: translateY(1px); /* Ajuste vertical fino */
+}
+
+
+/* --- Botón "No" (Menos llamativo) --- */
+.boton-no {
+    background-color: #f1f1f1; /* Gris claro */
+    color: #888; /* Texto gris */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* La lógica de movimiento está en JS */
+}
+
+.boton-no:hover {
+    background-color: #e0e0e0; /* Gris un poco más oscuro */
+    color: #666;
+    transform: translateY(-2px) scale(1.03); /* Efecto sutil */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* --- Mensaje Final --- */
+.mensaje-final {
+    position: absolute; /* Se posicionará sobre todo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(238, 156, 167, 0.8); /* Fondo semi-transparente rosa */
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 4em;
+    text-align: center;
+    padding: 20px;
+    opacity: 0; /* Inicialmente oculto */
+    visibility: hidden; /* Inicialmente no visible */
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    z-index: 100; /* Encima de todo lo demás */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.mensaje-final.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- Efecto Opcional: Brillo de Fondo --- */
+.brillo-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Detrás del contenido principal */
+}
+
+/* Puedes añadir aquí partículas o brillos animados con ::before / ::after y @keyframes */
+/* Ejemplo simple: un brillo que se mueve */
+.brillo-fondo::before {
+    content: '';
+    position: absolute;
+    width: 400px; /* Tamaño del brillo */
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    animation: moverBrillo 25s infinite linear alternate;
+    mix-blend-mode: screen; /* Efecto de mezcla */
+    opacity: 0.7;
+}
+
+@keyframes moverBrillo {
+    0% { transform: translate(-30%, -30%) scale(0.8); }
+    50% { transform: translate(30%, 30%) scale(1.2); }
+    100% { transform: translate(-10%, 20%) scale(1); }
+}
+
+
+/* --- Media Query para Móviles (Ajustes finos) --- */
+@media (max-width: 600px) {
+    .contenedor-principal {
+        padding: 35px 25px;
+        width: 95%;
+    }
+
+    .pregunta {
+        font-size: 2.8em; /* Reducir un poco más en móvil */
+        margin-bottom: 30px;
+    }
+
+    .contenedor-botones {
+        flex-direction: column; /* Apilar botones */
+        gap: 20px;
+    }
+
+    .boton {
+        font-size: 1em;
+        padding: 15px 25px;
+        width: 90%; /* Ancho casi completo */
+        min-width: unset; /* Quitar ancho mínimo */
+    }
+
+    /* Asegurar que el botón absoluto mantenga ancho en móvil */
+    .boton-no.moviendose {
+        width: 90%;
+        max-width: 300px; /* Limitar un poco */
+    }
+
+    .mensaje-final {
+        font-size: 2.5em; /* Tamaño de fuente del mensaje final en móvil */
+    }
+
+    /* Reducir tamaño del brillo en móvil */
+    .brillo-fondo::before {
+        width: 300px;
+        height: 300px;
+    }
+}
